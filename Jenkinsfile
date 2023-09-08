@@ -25,5 +25,6 @@ pipeline{
         }
         stage("Complete"){
               echo "Completed"
+        }
     }
 }
