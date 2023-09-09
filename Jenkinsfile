@@ -15,10 +15,6 @@ pipeline{
             steps{
                 echo "Fetch the source code from the directory path $DIRECTORY_PATH"
                 echo "compile code and generate any necessary artifacts"
-                dir("$DIRECTORY_PATH") {
-                    
-                    sh "mvn --version"
-                }
             }
 	post{
                 always{
