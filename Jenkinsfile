@@ -1,14 +1,18 @@
 pipeline{
     agent any
+    environment {
+        DIRECTORY_PATH= "/Users/benbradhurst1/Documents/Deakin/2023/Trimester 2/SIT753 Professional Practice in It/Week 5/Jenkins"
+        TESTING_ENVIRONMENT= "Mocha"
+        PRODUCTION_ENVIRONMENT= "Ben"
+    }
     stages{
-        stage("Build"){
+        stage('Build'){
             steps{
-                echo "Building"
-                withMaven {
-                  sh "mvn clean verify"
-                } 
+                echo "Fetch the source code from the directory path $DIRECTORY_PATH"
+                echo "compile code and generate any necessary artifacts"
+                
             }
-            post{
+	post{
                 always{
                     mail to :"benbradhurst@gmail.com",
                     subject: "Build Status Email",
@@ -16,19 +20,35 @@ pipeline{
                 }
             }
         }
-        stage("Test"){
+        stage('Test'){
             steps{
-                echo "Testing..."
+                echo "Unit Tests completed"
+                echo "Integration Tests completed"
             }
         }
-        stage("Deploy"){
+        stage('Code Quality Check'){
             steps{
-                echo "Deploying..."
+                echo "Checked the quality of the code"
+
             }
         }
-        stage("Complete"){
+        stage('Deploy'){
             steps{
-                 echo "Completed"
+                echo "deploy the application to the testing environment $TESTING_ENVIRONMENT"
+
+            }
+        }
+        stage('Approval'){
+            steps{
+                sleep(10)
+                echo "Approval started and completed!"
+
+            }
+        }
+        stage('Deploy to Production'){
+            steps{
+                echo "Deployed to $PRODUCTION_ENVIRONMENT"
+
             }
         }
     }
