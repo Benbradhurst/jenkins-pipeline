@@ -3,8 +3,10 @@ pipeline{
     stages{
         stage("Build"){
             steps{
-                echo "building"
-                mvn clean package
+                echo "Building"
+                withMaven {
+                  sh "mvn clean verify"
+                } 
             }
             post{
                 always{
