@@ -6,6 +6,11 @@ pipeline{
         PRODUCTION_ENVIRONMENT= "Ben"
     }
     stages{
+    	stage('Preparation') {
+	    	steps {
+	        	cleanWs()
+	    	}
+	}
         stage('Build'){
             steps{
                 echo "Fetch the source code from the directory path $DIRECTORY_PATH"
