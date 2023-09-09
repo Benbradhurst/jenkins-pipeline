@@ -4,6 +4,7 @@ pipeline{
         stage("Build"){
             steps{
                 echo "building"
+                mvn clean package
             }
             post{
                 always{
