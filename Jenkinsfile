@@ -10,7 +10,10 @@ pipeline{
             steps{
                 echo "Fetch the source code from the directory path $DIRECTORY_PATH"
                 echo "compile code and generate any necessary artifacts"
-                
+                dir("$DIRECTORY_PATH") {
+                    // Add Maven build commands here
+                    sh "mvn clean install"  // Replace with your Maven build command
+                }
             }
 	post{
                 always{
