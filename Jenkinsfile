@@ -3,50 +3,71 @@ pipeline{
     environment {
         DIRECTORY_PATH= "/Users/benbradhurst1/Documents/Deakin/2023/Trimester 2/SIT753 Professional Practice in It/Week 5/Jenkins"
         TESTING_ENVIRONMENT= "Mocha"
-        PRODUCTION_ENVIRONMENT= "Ben"
+        PRODUCTION_ENVIRONMENT= "AWS EC2"
     }
     stages{
-    	stage('Preparation') {
-	    	steps {
-	        	cleanWs()
-	    	}
-	}
+
         stage('Build'){
             steps{
                 echo "Fetch the source code from the directory path $DIRECTORY_PATH"
-                echo "compile code and generate any necessary artifacts"
-		mvn -version
+                echo "compile and build code using Maven"
+		sleep(2)
+		echo "Build complete"
             }
-	post{
-                always{
-                    mail to :"benbradhurst@gmail.com",
-                    subject: "Build Status Email",
-                    body: "Build log attached!"
-                }
-            }
-        }
+	}
         stage('Test'){
             steps{
-                echo "Unit Tests completed"
-                echo "Integration Tests completed"
+                echo "Running unit tests in $TESTING_ENVIRONMENT"
+		sleep(2)
+		echo "Unit tests completed"
+                echo "running Integration Tests in $TESTING_ENVIRONMENT"
+		sleep(2)
+		echo "Integration Tests completed
             }
+	    post{
+		always{
+		    mail to :"benbradhurst@gmail.com",
+		    subject: "Test Status Email",
+		    body: "Test Successful, ${BUILD_LOG, maxLines, escapeHtml}"
+		}
+	    }
+        
         }
         stage('Code Quality Check'){
             steps{
-                echo "Checked the quality of the code"
+                echo "Running quality tests via Checkstyle"
+		sleep(5)
+		echo "Quality check complete"
 
             }
         }
-        stage('Deploy'){
-            steps{
-                echo "deploy the application to the testing environment $TESTING_ENVIRONMENT"
+    	stage('Security Check'){
+    		steps{
+			echo "Running Snyk Security scan..."
+			sleep(5)
+			echo "No vulnerabilities found"
 
-            }
+    		}
+		post{
+			always{
+			    mail to :"benbradhurst@gmail.com",
+			    subject: "Security Check Status Email",
+			    body: "Security Check passed, ${BUILD_LOG, maxLines, escapeHtml}"
+			}
+	        }
         }
-        stage('Approval'){
+	stage('Deployment to Staging Environment)
+	      steps{
+		echo "Deploying to  $PRODUCTION_ENVIRONMENT"
+		sleep(1)
+		echo "Deployment successful"
+	      }
+	}
+        stage('Integrated Staging Tests'){
             steps{
-                sleep(10)
-                echo "Approval started and completed!"
+                echo "Running integrated staging tests with Jasmine"
+		sleep(3)
+		echo "Integrated staging tests complete"
 
             }
         }
