@@ -22,11 +22,11 @@ pipeline{
 		echo "Unit tests completed"
                 echo "running Integration Tests in $TESTING_ENVIRONMENT"
 		sleep(2)
-		echo "Integration Tests completed
+		echo "Integration Tests completed"
             }
 	    post{
 		always{
-		    mail to :"benbradhurst@gmail.com",
+		    mail to: "benbradhurst@gmail.com",
 		    subject: "Test Status Email",
 		    body: "Test Successful, ${BUILD_LOG, maxLines, escapeHtml}"
 		}
@@ -79,4 +79,5 @@ pipeline{
         }
     
 	}
+}
 }
