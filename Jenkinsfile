@@ -14,7 +14,7 @@ pipeline{
 		sleep(2)
 		echo "Build complete"
             }
-	}
+		}
         stage('Test'){
             steps{
                 echo "Running unit tests in $TESTING_ENVIRONMENT"
@@ -32,7 +32,7 @@ pipeline{
 		}
 	    }
         
-        }
+        
         stage('Code Quality Check'){
             steps{
                 echo "Running quality tests via Checkstyle"
@@ -56,18 +56,18 @@ pipeline{
 			}
 	        }
         }
-	stage('Deployment to Staging Environment)
-	      steps{
-		echo "Deploying to  $PRODUCTION_ENVIRONMENT"
-		sleep(1)
-		echo "Deployment successful"
+		stage('Deployment to Staging Environment')
+	      	steps{
+			echo "Deploying to  $PRODUCTION_ENVIRONMENT"
+			sleep(1)
+			echo "Deployment successful"
 	      }
-	}
-        stage('Integrated Staging Tests'){
+	
+    	stage('Integrated Staging Tests'){
             steps{
                 echo "Running integrated staging tests with Jasmine"
-		sleep(3)
-		echo "Integrated staging tests complete"
+			sleep(3)
+			echo "Integrated staging tests complete"
 
             }
         }
@@ -77,5 +77,5 @@ pipeline{
 
             }
         }
-    }
+    
 }
