@@ -15,6 +15,14 @@ pipeline {
 			steps{
 				echo 'Testing the application using Mocha'
 			}
+			post {
+				success{
+					mail to: "benbradhurst@gmail.com".
+					subject: "Test stage log",
+					body: "Test stage was successful, log: Testing the application using Mocha "
+					
+				}
+			}
 			
 		}
 		stage("Code Analysis") {
