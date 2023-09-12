@@ -27,8 +27,8 @@ pipeline{
 	    post{
 		always{
 		    mail to: "benbradhurst@gmail.com",
-		    subject: "Test Status Email",
-		    body: "Test Successful, ${BUILD_LOG, maxLines, escapeHtml}"
+		    subject: "Test Status Email",qw
+		    body: "Test Successful"
 		}
 	    }
         
@@ -52,7 +52,7 @@ pipeline{
 			always{
 			    mail to :"benbradhurst@gmail.com",
 			    subject: "Security Check Status Email",
-			    body: "Security Check passed, ${BUILD_LOG, maxLines, escapeHtml}"
+			    body: "Security Check passed"
 			}
 	        }
         }
@@ -75,9 +75,9 @@ pipeline{
             steps{
                 echo "Deployed to $PRODUCTION_ENVIRONMENT"
 
-            }
-        }
+            	}
+        	}
     
+		}
 	}
-}
 }
