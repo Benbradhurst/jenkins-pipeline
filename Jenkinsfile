@@ -37,6 +37,14 @@ pipeline {
 			steps{
 				echo 'Security scan of application with Snyk Security '
 			}
+			post {
+				success{
+					mail to: "benbradhurst@gmail.com",
+					subject: "Security stage log",
+					body: "Security Scan stage was successful, log: Security scan of application with Snyk Security , scan succcessful"
+					
+				}
+			}
 			
 		}
 		stage("Deploy to Staging") {
