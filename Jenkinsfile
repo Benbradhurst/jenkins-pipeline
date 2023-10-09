@@ -12,7 +12,7 @@ pipeline {
       }
       post {
         success {
-          emailext attachLog: true, attachmentsPattern: 'generatedFile.txt',
+          emailext attachLog: true,
             subject: "Test stage log",
             body: "Test stage was successful, log: Testing the application using Mocha",
             to: "benbradhurst@gmail.com"
@@ -31,7 +31,7 @@ pipeline {
       }
       post {
         success {
-          emailext attachLog: true, attachmentsPattern: 'generatedFile.txt',
+          emailext attachLog: true,
             subject: "Security stage log",
             body: "Security Scan stage was successful, log: Security scan of application with Snyk Security, scan successful",
             to: "benbradhurst@gmail.com"
