@@ -38,17 +38,17 @@ pipeline {
         attachmentsPattern: '**/build.log'
     }
   }
-      stage("Deploy to Staging") {
-        steps {
-          echo 'Deploying to AWS EC2 instance'
-        }
-      }
-      stage("Integration Tests on Staging") {
-        steps {
-          echo 'Running integration tests on AWS EC2 environment'
-        }
-      }
-      stage("Deploy to Production") {
+  stage("Deploy to Staging") {
+    steps {
+      echo 'Deploying to AWS EC2 instance'
+    }
+  }
+  stage("Integration Tests on Staging") {
+    steps {
+      echo 'Running integration tests on AWS EC2 environment'
+    }
+  }
+  stage("Deploy to Production") {
         steps {
           echo 'Deploying to AWS EC2 production server'
         }
