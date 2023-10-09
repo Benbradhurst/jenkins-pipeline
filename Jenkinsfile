@@ -45,7 +45,7 @@ pipeline {
                     to: "benbradhurst@gmail.com",
                     attachmentsPattern: '**/build.log'
             }
-        }
+        
         stage("Deploy to Staging") {
             steps {
                 echo 'Deploying to AWS EC2 instance'
@@ -63,4 +63,4 @@ pipeline {
         }
     }
 }
-
+}
