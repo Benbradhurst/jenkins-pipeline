@@ -28,30 +28,30 @@ pipeline {
       steps {
         echo 'Security scan of application with Snyk Security'
       }
-    }
-  }
-  post {
-    success {
-      emailext subject: "Security stage log",
-        body: "Security Scan stage was successful, log: Security scan of application with Snyk Security, scan successful",
-        to: "benbradhurst@gmail.com",
-        attachmentsPattern: '**/build.log'
-    }
-  }
-  stage("Deploy to Staging") {
-    steps {
-      echo 'Deploying to AWS EC2 instance'
-    }
-  }
-  stage("Integration Tests on Staging") {
-    steps {
-      echo 'Running integration tests on AWS EC2 environment'
-    }
-  }
-  stage("Deploy to Production") {
-        steps {
-          echo 'Deploying to AWS EC2 production server'
+      post {
+        success {
+          emailext subject: "Security stage log",
+            body: "Security Scan stage was successful, log: Security scan of application with Snyk Security, scan successful",
+            to: "benbradhurst@gmail.com",
+            attachmentsPattern: '**/build.log'
         }
       }
     }
-
+    
+    stage("Deploy to Staging") {
+      steps {
+        echo 'Deploying to AWS EC2 instance'
+      }
+    }
+    stage("Integration Tests on Staging") {
+      steps {
+        echo 'Running integration tests on AWS EC2 environment'
+      }
+    }
+    stage("Deploy to Production") {
+      steps {
+        echo 'Deploying to AWS EC2 production server'
+      }
+    }
+  }
+}
