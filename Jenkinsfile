@@ -1,6 +1,16 @@
 pipeline {
     agent any
     stages {
+		stage("Print Workspace and JENKINS_HOME") {
+            steps {
+                script {
+                    def workspace = pwd()
+                    def jenkinsHome = env.JENKINS_HOME
+                    echo "Workspace: ${workspace}"
+                    echo "JENKINS_HOME: ${jenkinsHome}"
+                }
+            }
+        }
         stage("build") {
             steps {
                 echo 'Building the application using Maven...'
@@ -53,4 +63,4 @@ pipeline {
         }
     }
 }
-}
+
