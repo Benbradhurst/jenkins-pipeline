@@ -12,10 +12,11 @@ pipeline {
       }
       post {
         success {
-          emailext subject: "Test stage log",
+          emailext attachLog: true, attachmentsPattern: 'generatedFile.txt',
+            subject: "Test stage log",
             body: "Test stage was successful, log: Testing the application using Mocha",
-            to: "benbradhurst@gmail.com",
-            attachmentsPattern: '**/build.log'
+            to: "benbradhurst@gmail.com"
+            
         }
       }
     }
@@ -30,10 +31,11 @@ pipeline {
       }
       post {
         success {
-          emailext subject: "Security stage log",
+          emailext attachLog: true, attachmentsPattern: 'generatedFile.txt',
+            subject: "Security stage log",
             body: "Security Scan stage was successful, log: Security scan of application with Snyk Security, scan successful",
-            to: "benbradhurst@gmail.com",
-            attachmentsPattern: '**/build.log'
+            to: "benbradhurst@gmail.com"
+            
         }
       }
     }
